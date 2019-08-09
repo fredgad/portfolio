@@ -5,3 +5,186 @@
 @import "base/fonts";
 @import "base/general";
 @import "../blocks/modules";
+
+header {
+    position: relative;
+    height: auto;
+
+    .banner {
+        width: 100%;
+        height: 100vh;
+    }
+}
+
+main {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+
+    .about {
+        background: #222;
+    }
+    .skills {
+        background: #fff;
+    }
+}
+
+
+
+
+
+html {
+  font-size: 10px;
+}
+
+
+.field {
+  position: absolute;
+  top: 0;
+  z-index: 999;
+  height:100vh;
+  width:100vw;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  animation: rotateForvard 6s linear infinite;
+  justify-content:center;
+  transform-style:preserve-3d;
+  transform-origin:50% 50% -15.4rem;
+  perspective: 9e9999px;
+
+  .cont {
+    position:relative;
+    width:11rem;
+    height: 10rem;
+    display:flex;
+    justify-content:center;
+    transform-style:preserve-3d;
+    transform-origin:50% 50% -15.4rem;
+    transition:.8s;
+    transition-timing-function:linear;
+    animation: rotateSide 12s linear infinite;
+    perspective: 9e9999px;
+
+    div {
+      position:absolute;
+      height:10rem;
+      width:20rem;
+      border-top:2px solid transparent;
+      transform-origin:50% 100%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size: 5rem;
+    //   backface-visibility: hidden;
+      background: rgba(255, 255, 255, 0.164);
+      transform-style:preserve-3d;
+
+      img {
+        height: 8rem;
+        width: auto;
+        backface-visibility: hidden;
+      }
+      
+    }
+
+    .one {
+      transform:translateY(-10.0rem)rotateX(36deg);
+      transform-style:preserve-3d;
+
+      img {
+        height: 8rem;
+        width: auto;
+        backface-visibility: hidden;
+      }
+    }
+    .two {
+      transform:translateY(-18.1rem)translateZ(-5.9rem)rotateX(72deg);
+
+      img {
+        height: 8rem;
+        width: auto;
+        backface-visibility: hidden;
+      }
+    }
+    .three {
+      transform:translateZ(-15.4rem)translateY(-21.2rem)rotateX(108deg);
+    }
+    .four {
+      transform:translateZ(-24.9rem)translateY(-18.1rem)rotateX(144deg);
+    }
+    .five { transform:translateZ(-30.8rem)translateY(-10.0rem)rotateX(180deg);
+    }
+    .six {
+      transform:translateZ(-30.8rem)rotateX(-144deg);
+    }
+    .seven {
+      transform:translateZ(-24.9rem)translateY(8.1rem)rotateX(-108deg);
+    }
+    .eight {
+      transform:translateZ(-15.4rem)translateY(11.2rem)rotateX(-72deg);
+    }
+    .nine {
+      transform:translateZ(-5.9rem)translateY(8.1rem)rotateX(-36deg);
+    }
+    .side1 {
+        transform:translateZ(-15.4rem)translateX(-10rem)translateY(-11rem)rotateY(-90deg);
+    }
+    .side2 {
+        transform:translateZ(-15.4rem)translateX(10rem)translateY(-11rem)rotateY(90deg);
+
+    }
+    .side1, .side2 {
+      background: radial-gradient(rgba(255, 255, 255, 0.274), transparent, transparent);
+      // backface-visibility: hidden;
+      height: 33rem;
+      width: 33rem;
+      border-radius: 50%;
+      
+      img {
+        height: 16rem;
+        width: auto;
+      }
+    }
+  }
+}
+
+@keyframes rotateForvard {
+    from {
+        transform: rotateY(0)
+    }
+    to {
+        transform: rotateY(360deg)
+    }
+}
+@keyframes rotateSide {
+    from {
+        transform: rotateX(0)
+    }
+    to {
+        transform: rotateX(360deg)
+    }
+}
+
+
+
+@media screen and (max-width:1270px) {
+  html {
+    font-size: 7px;
+  }
+}
+@media screen and (max-width:768px) {
+  html {
+    font-size: 5px;
+  }
+}
+@media screen and (max-width:499px) {
+  html {
+    font-size: 4px;
+  }
+}
+@media screen and (max-width:299px) {
+  html {
+    font-size: 3px;
+  }
+}
+
