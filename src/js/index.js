@@ -6,10 +6,19 @@ document.addEventListener('DOMContentLoaded', ()=> {
     let 
     wrapper = document.getElementById('wrapper'),
     positions = ['0', '-100vw', '-100vw, -100vh', '-200vw, -100vh'],
+    width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
     page = 0,
-    mouseCheck = false, //Mouse events trigger
-    circlePositionTop = 0,
-    circlePositionLeft = 0,
+    mouseCheck = false, //Mouse events trigger\
+    circle = document.querySelector('.field'),
+    aboutMe = document.querySelector('.about__menu_about-me'),
+    skills = document.querySelector('.about__menu_skills'),
+    experience = document.querySelector('.about__menu_experience'),
+    contacts = document.querySelector('.about__menu_contacts'),
+    aboutMenu = document.querySelector('.about__menu'), 
+    circlePositionTop = aboutMe.getBoundingClientRect().top,
+    circlePositionLeft = aboutMe.getBoundingClientRect().left - width,
+    circleObject = aboutMe.getBoundingClientRect().height,
+    circleSize = width > 1270 ? 10 : width > 768 ? 9 : width > 499 ? 7 : 6,
 
     //Variables for swiping
     maxSwipeTime = 1500, //Max time for swipe
@@ -24,7 +33,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
 //Events
-
 window.addEventListener("wheel", (e)=> {
 
     if (e.deltaY < 0) {
@@ -61,25 +69,70 @@ document.addEventListener('touchend', (e)=> {
     }
 });
 
+//Circle position event
+aboutMenu.addEventListener('mouseover', (e)=> {
+    if(e.target.classList.contains('element')) {
+        circlePositionTop = e.target.getBoundingClientRect().top;
+        circlePositionLeft = e.target.getBoundingClientRect().left;
+        changePosition();
+    }
+});
+
 
 //Functions 
 function scrollingPage(direction) {
     if(direction) {
         if(page > 0) {
             page--;
-            console.log(page + '!top!')
         } 
     } else {
         if(page < 3) {
             page++;
-            console.log(page + '!bot!')
         } 
     }
-    document.getElementById('html').style.fontSize = page > 0 ? '1.2px' : '10px';
-    console.log(page + "s" + positions[page])   
+    
     wrapper.style.transform = `translate(${positions[page]})`;
+    circleChangeSize();
+    changePosition();
 } 
 
+function changePosition() {
+    if(page === 1) {
+        circle.style.top = circlePositionTop + 15 + 'px';
+        circle.style.left = circlePositionLeft - 35 + 'px';
+    } else {
+        circle.style.top = '50vh';
+        circle.style.left = '50vw';
+    }
+}
+
+let size = circleSize;
+function circleChangeSize() {
+    if(page === 0){
+        if(size < circleSize) {
+            size += .05; 
+        }else {
+            return;
+        }
+    }else if(page === 1) {
+        if(size > 1.2) {
+            size -= .05;   
+        } else {
+            return;
+        }
+    }else {
+        if(size < 3) {
+            size += .05; 
+        }else {
+            return;
+        }
+    }
+    document.getElementById('html').style.fontSize = size + 'px'
+
+    window.requestAnimationFrame(circleChangeSize);
+    window.requestAnimationFrame(circleChangeSize);
+    
+}
 
 
 function swipeEnd(e) {

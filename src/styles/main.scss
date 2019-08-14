@@ -24,18 +24,51 @@ main {
     position: absolute;
     top: 0;
     left: 100vw;
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    
 
     > div {
       height: 100vh;
     }
 
     .about {
+        position: relative;
         background: #222;
         width: 45vw;
+        
+
+      .about__menu {
+        position: relative;
+        left: 40%;
+        width: 60%;
+        min-width: 200px;
+        height: 100%;
+        color: #fff;
+        
+        
+        h2 {
+          padding: 8vh 0 16vh 0 ;
+        }
+        > div {
+          cursor: pointer;
+          padding: 2vh 0 2vh 0 ;
+          width: 120px;
+        }
+      }
     }
     .skills {
         background: #fff;
         width: 55vw;
+        color: #932E96;
+
+        h2 {
+          padding: 8vh 0 12vh 2vw ;
+        }
+        > div > div {
+          padding: 1vh 0 1vh 2vw ;
+          width: 120px;
+        }
     }
 }
 
