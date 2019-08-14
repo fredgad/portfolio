@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', ()=> {
     positions = ['0', '-100vw', '-100vw, -100vh', '-200vw, -100vh'],
     width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
     page = 0,
-    mouseCheck = false, //Mouse events trigger\
+    mouseCheck = false, //Mouse events trigger
+    wheelCheckTop = true,
+    secondWheelCheckTop = false,
+    wheelCheckBot = true,
+    secondWheelCheckBot = false,
     circle = document.querySelector('.field'),
     aboutMe = document.querySelector('.about__menu_about-me'),
     skills = document.querySelector('.about__menu_skills'),
@@ -34,17 +38,29 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 //Events
 window.addEventListener("wheel", (e)=> {
-
-    if (e.deltaY < 0) {
-        scrollingPage(true); //Scrolling up
-        console.log('top')
-    }
-    if (e.deltaY > 0) {
-        scrollingPage(); //Scrolling down
-        console.log('bot')
-    }
+    wheelChacking(e)
 });
 
+function wheelChacking(e) {
+    if (e.deltaY < 0) {
+        if(wheelCheckTop) {
+            scrollingPage(true); //Scrolling up
+            wheelCheckTop = false;
+            setTimeout(()=> {
+                wheelCheckTop = true;
+            }, 500);
+        }
+    }
+    if (e.deltaY > 0) {
+        if(wheelCheckBot) {
+            scrollingPage(); //Scrolling down
+            wheelCheckBot = false;
+            setTimeout(()=> {
+                wheelCheckBot = true;
+            }, 500);
+        }
+    }
+}
 //Mouse slider
 document.addEventListener('touchstart', (e)=> {
     let touchObj = e.changedTouches[0];
@@ -100,6 +116,15 @@ function changePosition() {
     if(page === 1) {
         circle.style.top = circlePositionTop + 15 + 'px';
         circle.style.left = circlePositionLeft - 35 + 'px';
+        console.log(page)
+        setTimeout(()=> {
+            circle.style.top = circlePositionTop + 15 + 'px';
+            circle.style.left = circlePositionLeft - 35 + 'px';
+            console.log(page)
+        },500);
+    } else if(page === 2) {
+        circle.style.top = '10vh';
+        circle.style.left = '50vw';
     } else {
         circle.style.top = '50vh';
         circle.style.left = '50vw';
