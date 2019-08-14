@@ -116,11 +116,9 @@ function changePosition() {
     if(page === 1) {
         circle.style.top = circlePositionTop + 15 + 'px';
         circle.style.left = circlePositionLeft - 35 + 'px';
-        console.log(page)
         setTimeout(()=> {
             circle.style.top = circlePositionTop + 15 + 'px';
             circle.style.left = circlePositionLeft - 35 + 'px';
-            console.log(page)
         },500);
     } else if(page === 2) {
         circle.style.top = '10vh';
