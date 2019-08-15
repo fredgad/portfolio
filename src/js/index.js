@@ -13,8 +13,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     secondWheelCheckTop = false,
     wheelCheckBot = true,
     secondWheelCheckBot = false,
+    swipingCheck = true,
+    pages = document.getElementById('pages').children,
+    footerHead = document.querySelector('#works > h2'),
     circle = document.querySelector('.field'),
     aboutMe = document.querySelector('.about__menu_about-me'),
+    lines = document.querySelectorAll('.line'),
+    skillsCont = document.querySelector('.skills__cont'),
     skills = document.querySelector('.about__menu_skills'),
     experience = document.querySelector('.about__menu_experience'),
     contacts = document.querySelector('.about__menu_contacts'),
@@ -38,29 +43,43 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 //Events
 window.addEventListener("wheel", (e)=> {
+    circle.style.transition = '2s';
     wheelChacking(e)
 });
-
+skillsCont.addEventListener('mouseover', (e)=> {
+    swipingCheck = false;
+});
+skillsCont.addEventListener('mouseleave', (e)=> {
+    swipingCheck = true;
+});
+skillsCont.addEventListener('mouseout', (e)=> {
+    swipingCheck = true;
+});
 function wheelChacking(e) {
-    if (e.deltaY < 0) {
-        if(wheelCheckTop) {
-            scrollingPage(true); //Scrolling up
-            wheelCheckTop = false;
-            setTimeout(()=> {
-                wheelCheckTop = true;
-            }, 500);
+    if(swipingCheck) {
+        if (e.deltaY < 0) {
+            if(wheelCheckTop) {
+                scrollingPage(true); //Scrolling up
+                wheelCheckTop = false;
+                setTimeout(()=> {
+                    wheelCheckTop = true;
+                    circle.style.transition = '0s';
+                }, 500);
+            }
         }
-    }
-    if (e.deltaY > 0) {
-        if(wheelCheckBot) {
-            scrollingPage(); //Scrolling down
-            wheelCheckBot = false;
-            setTimeout(()=> {
-                wheelCheckBot = true;
-            }, 500);
+        if (e.deltaY > 0) {
+            if(wheelCheckBot) {
+                scrollingPage(); //Scrolling down
+                wheelCheckBot = false;
+                setTimeout(()=> {
+                    circle.style.transition = '0s';
+                    wheelCheckBot = true;
+                }, 500);
+            }
         }
     }
 }
+
 //Mouse slider
 document.addEventListener('touchstart', (e)=> {
     let touchObj = e.changedTouches[0];
@@ -87,11 +106,15 @@ document.addEventListener('touchend', (e)=> {
 
 //Circle position event
 aboutMenu.addEventListener('mouseover', (e)=> {
+    circle.style.transition = '0s';
     if(e.target.classList.contains('element')) {
         circlePositionTop = e.target.getBoundingClientRect().top;
         circlePositionLeft = e.target.getBoundingClientRect().left;
+        
+        rotatePages(e);
         changePosition();
     }
+    circle.style.transition = '0s';
 });
 
 
@@ -112,20 +135,71 @@ function scrollingPage(direction) {
     changePosition();
 } 
 
+function rotatePages(e) {
+    let rotate = e.target.getAttribute('data-num');
+    
+    
+    if(rotate == 0) {
+        pages[0].style.transform = 'rotateX(0deg)';
+        pages[1].style.transform = 'rotateY(180deg)';
+        pages[2].style.transform = 'rotateX(-180deg)';
+        pages[3].style.transform = 'rotateY(-180deg)';
+    } else if(rotate == 1) {
+        pages[0].style.transform = 'rotateX(-180deg)';
+        pages[1].style.transform = 'rotateY(360deg)';
+        pages[2].style.transform = 'rotateX(-180deg)';
+        pages[3].style.transform = 'rotateY(-180deg)';
+
+        
+    } else if(rotate == 2) {
+        pages[0].style.transform = 'rotateX(-180deg)';
+        pages[1].style.transform = 'rotateY(520deg)';
+        pages[2].style.transform = 'rotateX(-360deg)';
+        pages[3].style.transform = 'rotateY(-180deg)';
+    } else if(rotate == 3) {
+        pages[0].style.transform = 'rotateX(-180deg)';
+        pages[1].style.transform = 'rotateY(520deg)';
+        pages[2].style.transform = 'rotateX(-520deg)';
+        pages[3].style.transform = 'rotateY(-360deg)';
+    }
+    if(rotate == 1) {
+        for(let x = 0; x < lines.length; x++) {
+            lines[x].classList.remove('linePlus');
+        }
+    } else {
+        for(let x = 0; x < lines.length; x++) {
+            lines[x].classList.add('linePlus');
+        }
+    }
+
+}
+
 function changePosition() {
-    if(page === 1) {
+    if(page === 0) {
+        circle.style.top = '50vh';
+        circle.style.left = '50vw';
+        
+        setTimeout(()=> {
+            circle.style.top = '50vh';
+            circle.style.left = '50vw';
+        },50);
+    } else if(page === 1) {
         circle.style.top = circlePositionTop + 15 + 'px';
         circle.style.left = circlePositionLeft - 35 + 'px';
         setTimeout(()=> {
             circle.style.top = circlePositionTop + 15 + 'px';
             circle.style.left = circlePositionLeft - 35 + 'px';
-        },500);
+        },50);
     } else if(page === 2) {
         circle.style.top = '10vh';
-        circle.style.left = '50vw';
+        circle.style.left = '90vw';
+        footerHead.style.transform = 'translateX(0px)';
+        setTimeout(()=> {
+            circle.style.top = '10vh';
+            circle.style.left = '90vw';
+        },50);
     } else {
-        circle.style.top = '50vh';
-        circle.style.left = '50vw';
+        footerHead.style.transform = 'translateX(100vw)';
     }
 }
 
