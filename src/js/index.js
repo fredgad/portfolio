@@ -19,6 +19,8 @@ document.addEventListener('DOMContentLoaded', ()=> {
     circle = document.querySelector('.field'),
     aboutMe = document.querySelector('.about__menu_about-me'),
     lines = document.querySelectorAll('.line'),
+    page1A = document.querySelectorAll('.page1 a'),
+    page2A = document.querySelectorAll('.page2 a'),
     skillsCont = document.querySelector('.skills__cont'),
     skills = document.querySelector('.about__menu_skills'),
     experience = document.querySelector('.about__menu_experience'),
@@ -64,7 +66,7 @@ function wheelChacking(e) {
                 setTimeout(()=> {
                     wheelCheckTop = true;
                     circle.style.transition = '0s';
-                }, 500);
+                }, 350);
             }
         }
         if (e.deltaY > 0) {
@@ -74,7 +76,7 @@ function wheelChacking(e) {
                 setTimeout(()=> {
                     circle.style.transition = '0s';
                     wheelCheckBot = true;
-                }, 500);
+                }, 350);
             }
         }
     }
@@ -138,7 +140,6 @@ function scrollingPage(direction) {
 function rotatePages(e) {
     let rotate = e.target.getAttribute('data-num');
     
-    
     if(rotate == 0) {
         pages[0].style.transform = 'rotateX(0deg)';
         pages[1].style.transform = 'rotateY(180deg)';
@@ -190,7 +191,19 @@ function changePosition() {
             circle.style.top = circlePositionTop + 15 + 'px';
             circle.style.left = circlePositionLeft - 35 + 'px';
         },50);
+
+        for(let x = 0; x < page1A.length; x++) {
+            page1A[x].classList.add('page1__flyTop');
+        }
     } else if(page === 2) {
+        for(let x = 0; x < page1A.length; x++) {
+            page1A[x].classList.remove('page1__flyLeft');
+            page1A[x].classList.remove('page1__flyTop');
+        }
+        for(let x = 0; x < page2A.length; x++) {
+            page2A[x].classList.add('page2__fly');
+        }
+
         circle.style.top = '10vh';
         circle.style.left = '90vw';
         footerHead.style.transform = 'translateX(0px)';
@@ -200,7 +213,15 @@ function changePosition() {
         },50);
     } else {
         footerHead.style.transform = 'translateX(100vw)';
+
+        for(let x = 0; x < page1A.length; x++) {
+            page1A[x].classList.add('page1__flyLeft');
+        }
+        for(let x = 0; x < page2A.length; x++) {
+            page2A[x].classList.remove('page2__fly');
+        }
     }
+
 }
 
 let size = circleSize;
