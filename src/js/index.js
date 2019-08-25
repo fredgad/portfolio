@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     swipingCheck = true,
     pages = document.getElementById('pages').children,
     footerHead = document.querySelector('#works > h2'),
+    comingSoon = document.querySelector("#comingSoon"),
     circle = document.querySelector('.field'),
     aboutMe = document.querySelector('.about__menu_about-me'),
     lines = document.querySelectorAll('.line'),
@@ -267,6 +268,14 @@ function swipeEnd(e) {
     }
 }
 
+//Coming soon
+for(let x = 0; x < 35; x++) {
+  comingSoon.innerHTML += '<div class="box"></div>';
+} 
+let box = document.querySelectorAll(".box");
+for(let y = 0; y < box.length; y++) {
+  box[y].style.animation = `forBox 5s cubic-bezier(.36,0,.64,.99)  ${y / 100}s infinite alternate`;
+}
 
 
 
