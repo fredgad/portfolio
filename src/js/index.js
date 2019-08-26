@@ -110,7 +110,7 @@ document.addEventListener('touchend', (e)=> {
 //Circle position event
 aboutMenu.addEventListener('mouseover', (e)=> {
     circle.style.transition = '0s';
-    if(e.target.classList.contains('element')) {
+    if(e.target.classList.contains('element') && wheelCheckTop && wheelCheckBot) {
         circlePositionTop = e.target.getBoundingClientRect().top;
         circlePositionLeft = e.target.getBoundingClientRect().left;
         
@@ -188,6 +188,7 @@ function changePosition() {
     } else if(page === 1) {
         circle.style.top = circlePositionTop + 15 + 'px';
         circle.style.left = circlePositionLeft - 35 + 'px';
+        console.log(' : ' + circlePositionTop)
         setTimeout(()=> {
             circle.style.top = circlePositionTop + 15 + 'px';
             circle.style.left = circlePositionLeft - 35 + 'px';

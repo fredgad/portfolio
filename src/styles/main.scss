@@ -41,6 +41,28 @@ header {
     justify-content: center;
     align-items: center;
 
+    > div {
+
+      h1 {
+        font-size: 45px;
+        position: absolute;
+        color: #222;
+        top: 30px;
+        left: 30px;
+        font-family: Roboto, sans-serif;
+      }
+      img {
+        position: absolute;
+        left: 30px;
+        top: calc(50vh - 150px);
+        height: 300px;
+        width: auto;
+        z-index: 999;
+        border: 4px solid #222;
+        border-radius: 33px;
+      }
+    }
+
     .banner {
         width: 100%;
         height: 100vh;
@@ -217,6 +239,31 @@ main {
     .experience{
       transform: rotateX(-180deg);
       transform-origin: 0% 100%;
+
+      p {
+        font-size: 17px;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        max-height: 60vh;
+        overflow-Y: scroll;
+        transition: .2s;
+
+        a {
+          text-decoration: none;
+          color: #222;
+        }
+        a:hover {
+          color: #932E96;
+        }
+        a:visited {
+          color: #aaa; 
+        }
+      }
+      p:hover {
+        box-shadow: inset -3px 0px 5px #932E96;
+      }
     }
     .contacts {
       transform: rotateY(-180deg);
@@ -231,12 +278,13 @@ main {
         justify-content: center;
         flex-direction: column;
 
-        a, p {
+        a {
           text-decoration: none;
           padding: 0vh 0 0vh 2vw ;
           font-size: 20px;
           font-weight: 900;
           color: #222;
+          margin-bottom: 20px;
         }
       }
     }
@@ -380,11 +428,11 @@ footer {
   h2 {
     position: absolute;
     font-size: 35px;
-    top: 10vh;
+    top: 10px;
     width: 100vw;
     text-align: center;
     font-family: Roboto, sans-serif;
-    font-weight: 100;
+    font-weight: 700;
     transition: .4s;
     color: #222;
     z-index: 9;
@@ -416,10 +464,10 @@ footer {
       .page1__game {
         grid-area: gm;
       }
-      .page1__onpoint {
+      .page1__photo-cut {
         grid-area: op;
       }
-      .page1__brain {
+      .page1__timer {
         grid-area: br;
       }
 
@@ -473,7 +521,7 @@ footer {
           transition: .2s;
         }
         img:hover {
-          transform: scale(1.25);
+          transform: scale(1.5);
           transition: .6s;
         }
       }
@@ -520,7 +568,7 @@ footer {
         
         p {
           display: flex;
-          position: relative;
+          position: absolute;
           background: #fff;
           color: #932E96;
           font-size: 17px;
@@ -530,6 +578,18 @@ footer {
           margin: 0;
           justify-content: center;
           align-items: center;
+          z-index: 9;
+        }
+        img {
+          display: block;
+          width: 100%;
+          height: auto;
+          margin-top: 35px;
+          transition: .2s;
+        }
+        img:hover {
+          transform: scale(1.5);
+          transition: .6s;
         }
 
         #comingSoon {
