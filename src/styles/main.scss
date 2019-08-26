@@ -6,6 +6,39 @@
 @import "base/general";
 @import "../blocks/modules";
 
+@keyframes div1 {
+  0%, 100% {
+    transform: rotate(25deg);
+  }
+  50% {
+    transform: rotate(-75deg);
+  }
+}
+@keyframes div2 {
+  0%, 100% {
+    transform: rotate(-75deg);
+  }
+  50% {
+    transform: rotate(25deg);
+  }
+}
+@keyframes div3 {
+  0%, 100% {
+    transform: rotate(145deg);
+  }
+  50% {
+    transform: rotate(-145deg);
+  }
+}
+@keyframes div4 {
+  0%, 100% {
+    transform: rotate(-145deg);
+  }
+  50% {
+    transform: rotate(145deg);
+  }
+}
+
 @keyframes forBox {
   0%, 100% {
     transform: rotateX(0);
@@ -34,6 +67,22 @@
   }
 }
 
+html {
+  font-size: 10px;
+}
+
+#body {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    display: block;
+  }
+}
+
 header {
     position: relative;
     height: auto;
@@ -51,15 +100,54 @@ header {
         left: 30px;
         font-family: Roboto, sans-serif;
       }
-      img {
+      .frame {
         position: absolute;
-        left: 30px;
+        left: 80px;
         top: calc(50vh - 150px);
         height: 300px;
-        width: auto;
-        z-index: 999;
-        border: 4px solid #222;
-        border-radius: 33px;
+        width: 225px;
+        overflow: hidden;
+        transition: .5s;
+        animation: div1 9s linear infinite reverse;
+
+        > div {
+          height: 300px;
+          width: 225px;
+          overflow: hidden;
+          transition: .5s;
+          animation: div2 9s linear infinite reverse;
+
+          > div {
+            height: 300px;
+            width: 225px;
+            overflow: hidden;
+            transition: .5s;
+            animation: div3 19s linear 1s infinite reverse;
+            
+            > div {
+              height: 300px;
+              width: 225px;
+              transition: .5s;
+              animation: div4 19s linear 1s infinite reverse;
+
+              img {
+                position: fixed;
+                transform: rotate(50deg);
+                height: 300px;
+                width: auto;
+                z-index: 999;
+                transition: .5s;
+              }
+            }
+          }
+        }
+      }
+      // .frame:hover img {
+      //   // transform: ;
+      // }
+      .frame:hover img {
+        transform: scale(1.25)rotate(50deg);
+        transition: 1s;
       }
     }
 
@@ -291,17 +379,6 @@ main {
   }
 }
 
-html {
-  font-size: 10px;
-}
-
-#body {
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 #wrapper {
   transition: .4s;
 }
@@ -309,8 +386,7 @@ html {
 .field {
   position: fixed;
   z-index: 999;
-  left: 50vw;
-  top: 50vh;
+  top: 47vh;
   display:flex;
   justify-content:center;
   align-items:center;
