@@ -83,6 +83,102 @@ html {
   }
 }
 
+#nav {
+  position: fixed;
+  height: 30px;
+  width: 40px;
+  left: 0;
+  top: 28vh;
+  background: #222; 
+  z-index: 999;
+  transition: .34s;
+  border-left: 4px solid #932E96;  
+
+
+
+  .navbar {
+    position: absolute;
+    background: linear-gradient(90deg, #222, 30px, transparent 30px);
+    left: calc(100% - 30px);
+    height: 30px;
+    width: 180px;
+    overflow: hidden;
+    transition: .34s;
+
+    .navbar__line {
+      position: relative;
+      height: 30px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 2vw;
+      font-size: 15px;
+      font-family: Roboto, sans-serif;
+      color: #eee;
+      right: 100%;
+    }
+    .navbar__out {
+      right: 0;
+    }
+    .navbar__line:first-child {
+      margin-top: 30px;
+    }
+    .navbar__line:nth-child(odd) {
+      background: #555;
+    }
+  }
+  .navbarOpen {
+    height: 300px;
+  }
+  #navButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 9999999999;
+    height: 30px;
+    width: 30px;
+    padding-top: 4px;
+    padding-left: 5px;
+    
+    > div {
+      height: 4px;
+      width: 20px;
+      background: #932E96;
+      border-radius: 3px;
+      transition: .6s;
+      margin-bottom: 5px;
+    }
+    .top {
+      transform: translateY(0px)rotate(0deg);
+    }
+    .mid {
+      transform: rotateZ(0deg);
+      opacity: 1;
+    }
+    .bot {
+      transform: translateY(0px)rotate(0deg);
+    }
+  }
+}
+#nav.navOpenWidth {
+  width: 180px;
+}
+#nav.navOpen {
+
+  #navButton {
+    .top {
+      transform: translateY(15px)rotate(-495deg)
+    }
+    .mid {
+      transform: rotateZ(-1111deg);
+      opacity: 0;
+    }
+    .bot {
+      transform: translateY(-15px)rotate(495deg);
+    }
+  }
+}
+
 header {
     position: relative;
     height: auto;
@@ -334,7 +430,7 @@ main {
         padding-right: 2vw;
         padding-top: 20px;
         padding-bottom: 20px;
-        max-height: 60vh;
+        height: calc(60vh -40px);
         overflow-Y: scroll;
         transition: .2s;
 

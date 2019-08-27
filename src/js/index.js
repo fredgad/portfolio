@@ -1,9 +1,8 @@
 import "./import/modules";
 
-    
 document.addEventListener('DOMContentLoaded', ()=> {
     // 
-    let 
+    let  
     wrapper = document.getElementById('wrapper'),
     positions = ['0', '-100vw', '-100vw, -100vh', '-200vw, -100vh'],
     width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
@@ -14,6 +13,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     wheelCheckBot = true,
     secondWheelCheckBot = false,
     swipingCheck = true,
+    navCheck = false,
     pages = document.getElementById('pages').children,
     footerHead = document.querySelector('#works > h2'),
     comingSoon = document.querySelector("#comingSoon"),
@@ -27,6 +27,13 @@ document.addEventListener('DOMContentLoaded', ()=> {
     experience = document.querySelector('.about__menu_experience'),
     contacts = document.querySelector('.about__menu_contacts'),
     aboutMenu = document.querySelector('.about__menu'), 
+    nav = document.querySelector('#nav'),
+    navbar = document.querySelector('.navbar'),
+    navbarLines = document.querySelectorAll('.navbar__line'),
+    navButton = document.querySelector('#navButton'),
+    navTop = document.querySelector('#navButton .top'),
+    navMid = document.querySelector('#navButton .mid'),
+    navBot = document.querySelector('#navButton .bot'),
     circlePositionTop = aboutMe.getBoundingClientRect().top,
     circlePositionLeft = aboutMe.getBoundingClientRect().left - width,
     circleObject = aboutMe.getBoundingClientRect().height,
@@ -58,6 +65,38 @@ skillsCont.addEventListener('mouseleave', (e)=> {
 skillsCont.addEventListener('mouseout', (e)=> {
     swipingCheck = true;
 });
+navButton.addEventListener('click', () => { 
+    buttonEvent(700);
+});
+
+
+function buttonEvent(speed) {
+    navCheck = navCheck ? false : true;
+	if (navCheck) {
+        nav.classList.add('navOpen');
+        nav.classList.add('navOpenWidth'); 
+        new Promise((r)=> {
+            setTimeout(()=> {
+                if(navCheck) {
+                    navbar.classList.add('navbarOpen');
+                    r(1);
+                }
+            }, speed);
+        }).then(()=> {
+            
+        })
+        
+	} else {
+        nav.classList.remove('navOpen');
+        setTimeout(()=> {
+            if(!navCheck) {
+                nav.classList.remove('navOpenWidth');
+                navbar.classList.remove('navbarOpen');
+            }
+        }, speed);
+	}
+}
+
 function wheelChacking(e) {
     if(swipingCheck) {
         if (e.deltaY < 0) {
@@ -119,6 +158,19 @@ aboutMenu.addEventListener('mouseover', (e)=> {
     }
     circle.style.transition = '0s';
 });
+aboutMenu.addEventListener('touchstart', (e)=> {
+    circle.style.transition = '0s';
+    if(e.target.classList.contains('element') && wheelCheckTop && wheelCheckBot) {
+        circlePositionTop = e.target.getBoundingClientRect().top;
+        circlePositionLeft = e.target.getBoundingClientRect().left;
+        
+        rotatePages(e);
+        changePosition();
+    }
+    circle.style.transition = '0s';
+});
+
+
 
 
 //Functions 
