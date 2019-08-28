@@ -1,7 +1,7 @@
 import "./import/modules";
 
 document.addEventListener('DOMContentLoaded', ()=> {
-    // 
+    
     let  
     wrapper = document.getElementById('wrapper'),
     positions = ['0', '-100vw', '-100vw, -100vh', '-200vw, -100vh'],
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     aboutMenu = document.querySelector('.about__menu'), 
     nav = document.querySelector('#nav'),
     navbar = document.querySelector('.navbar'),
+    navCircle = document.querySelector('.circle'),
     navbarLines = document.querySelectorAll('.navbar__line'),
     navButton = document.querySelector('#navButton'),
     navTop = document.querySelector('#navButton .top'),
@@ -66,15 +67,19 @@ skillsCont.addEventListener('mouseout', (e)=> {
     swipingCheck = true;
 });
 navButton.addEventListener('click', () => { 
-    buttonEvent(700);
+    buttonEvent(300);
+});
+navButton.addEventListener('touchstart', () => { 
+    buttonEvent(300);
 });
 
 
 function buttonEvent(speed) {
     navCheck = navCheck ? false : true;
+    navCircle.classList.add('circleOut'); 
 	if (navCheck) {
         nav.classList.add('navOpen');
-        nav.classList.add('navOpenWidth'); 
+        nav.classList.add('navOpenWidth');
         new Promise((r)=> {
             setTimeout(()=> {
                 if(navCheck) {
@@ -83,17 +88,34 @@ function buttonEvent(speed) {
                 }
             }, speed);
         }).then(()=> {
-            
-        })
-        
-	} else {
-        nav.classList.remove('navOpen');
-        setTimeout(()=> {
-            if(!navCheck) {
-                nav.classList.remove('navOpenWidth');
-                navbar.classList.remove('navbarOpen');
+            for(let x = 0; x < navbarLines.length; x++) {
+                setTimeout(()=> {
+                    if(navCheck) {
+                        navbarLines[x].classList.add('lineOut');
+                    }
+                }, x * 35);
             }
-        }, speed);
+        })
+	} else {
+        navCircle.classList.remove('circleOut');
+        for(let x = navbarLines.length-1; x > -1; x--) {
+            if(!navCheck) {
+                setTimeout(()=> {
+                    nav.classList.remove('navOpen');
+                    navbarLines[x].classList.remove('lineOut');
+                }, (navbarLines.length - x) * 35);
+            }
+        }
+        new Promise((r)=> {
+            setTimeout(()=> {
+                if(!navCheck) {
+                    r(1);
+                }
+            }, speed + 340);
+        }).then(()=> {
+            nav.classList.remove('navOpenWidth');
+            navbar.classList.remove('navbarOpen');
+        })
 	}
 }
 

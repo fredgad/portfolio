@@ -93,29 +93,109 @@ html {
   z-index: 999;
   transition: .34s;
   border-left: 4px solid #932E96;  
+  
+  .hide__circle {
+    left: 100%;
+    display: flex;
+    position: relative;
+    height: 400px;
+    width: 400px;
+    overflow: hidden;
 
-
-
+    .circle {
+      left: -180px;
+      border-radius: 50%;
+      height: 300px;
+      width: 300px;
+      position: absolute;
+      border: 30px solid #222;
+      border-right: 30px solid transparent;
+      border-top: 30px solid transparent;
+      transform: rotate(45deg);
+      transition: .72s linear;
+    }
+    .circleOut {
+      transform: rotate(225deg);
+    } 
+  }
   .navbar {
     position: absolute;
-    background: linear-gradient(90deg, #222, 30px, transparent 30px);
-    left: calc(100% - 30px);
-    height: 30px;
-    width: 180px;
+    top: -75px;
+    left: 0px;
+    height: 450px;
+    width: 450px;
     overflow: hidden;
     transition: .34s;
+    padding-top: 90px;
 
     .navbar__line {
       position: relative;
       height: 30px;
+      width: 0px;
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
-      padding-left: 2vw;
-      font-size: 15px;
-      font-family: Roboto, sans-serif;
-      color: #eee;
       right: 100%;
+      transition: width .15s;
+      transform-origin: 0% 50%;
+      overflow: hidden;
+
+      a {
+        color: #eee;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        width: 180px;
+        background: #222;
+        text-decoration: none;
+        font-size: 15px;
+        font-family: Roboto, sans-serif;
+      }
+      a:hover {
+        color: #932E96;
+      }
+    }
+    .navbar__line:nth-child(1) {
+      left: 55px;
+      transform: rotate(-44deg);
+    }
+    .navbar__line:nth-child(2) {
+      left: 77px;
+      transform: rotate(-33deg);
+    }
+    .navbar__line:nth-child(3) {
+      left: 93px;
+      transform: rotate(-23deg);
+    }
+    .navbar__line:nth-child(4) {
+      left: 103px;
+      transform: rotate(-12deg);
+    }
+    .navbar__line:nth-child(5) {
+      left: 106px;
+      transform: rotate(0);
+    }
+    .navbar__line:nth-child(6) {
+      left: 103px;
+      transform: rotate(12deg);
+    }
+    .navbar__line:nth-child(7) {
+      left: 93px;
+      transform: rotate(23deg);
+    }
+    .navbar__line:nth-child(8) {
+      left: 77px;
+      transform: rotate(33deg);
+    }
+    .navbar__line:nth-child(9) {
+      left: 55px;
+      transform: rotate(44deg);
+    }
+    .lineOut {
+      transition: width .34s;
+      width: 150px;
+      overflow: hidden;
     }
     .navbar__out {
       right: 0;
@@ -123,12 +203,12 @@ html {
     .navbar__line:first-child {
       margin-top: 30px;
     }
-    .navbar__line:nth-child(odd) {
-      background: #555;
-    }
   }
   .navbarOpen {
-    height: 300px;
+    transition: 0s;
+    left: 225px;
+    height: 450px;
+    width: 400px;
   }
   #navButton {
     position: absolute;
@@ -348,7 +428,7 @@ main {
         }
         .skills__cont_css span {
           width: 50%;
-          transition: 4s;  
+          transition: 4s;
         }
         .skills__cont_js span {
           width: 40%;
