@@ -32,9 +32,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     navCircle = document.querySelector('.circle'),
     navbarLines = document.querySelectorAll('.navbar__line'),
     navButton = document.querySelector('#navButton'),
-    navTop = document.querySelector('#navButton .top'),
-    navMid = document.querySelector('#navButton .mid'),
-    navBot = document.querySelector('#navButton .bot'),
+    navWall = document.getElementById('navWall'),
     circlePositionTop = aboutMe.getBoundingClientRect().top,
     circlePositionLeft = aboutMe.getBoundingClientRect().left - width,
     circleObject = aboutMe.getBoundingClientRect().height,
@@ -55,6 +53,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
 //Events
 window.addEventListener("wheel", (e)=> {
     circle.style.transition = '2s';
+    if(navCheck) {
+        buttonEvent(300);
+    } 
     wheelChacking(e)
 });
 skillsCont.addEventListener('mouseover', (e)=> {
@@ -77,7 +78,9 @@ navButton.addEventListener('touchstart', () => {
 function buttonEvent(speed) {
     navCheck = navCheck ? false : true;
     navCircle.classList.add('circleOut'); 
+    document.querySelector('.hide__circle').classList.add('hideOut');
 	if (navCheck) {
+        navWall.classList.add('navWall');
         nav.classList.add('navOpen');
         nav.classList.add('navOpenWidth');
         new Promise((r)=> {
@@ -98,24 +101,24 @@ function buttonEvent(speed) {
         })
 	} else {
         navCircle.classList.remove('circleOut');
+        navWall.classList.remove('navWall');
         for(let x = navbarLines.length-1; x > -1; x--) {
             if(!navCheck) {
                 setTimeout(()=> {
                     nav.classList.remove('navOpen');
                     navbarLines[x].classList.remove('lineOut');
+                    if(!navCheck) {
+                        document.querySelector('.hide__circle').classList.remove('hideOut');
+                    }
                 }, (navbarLines.length - x) * 35);
             }
         }
-        new Promise((r)=> {
-            setTimeout(()=> {
-                if(!navCheck) {
-                    r(1);
-                }
-            }, speed + 340);
-        }).then(()=> {
-            nav.classList.remove('navOpenWidth');
-            navbar.classList.remove('navbarOpen');
-        })
+        setTimeout(()=> {
+            if(!navCheck) {
+                nav.classList.remove('navOpenWidth');
+                navbar.classList.remove('navbarOpen');
+            }
+        }, speed + 340);
 	}
 }
 
@@ -262,7 +265,6 @@ function changePosition() {
     } else if(page === 1) {
         circle.style.top = circlePositionTop + 15 + 'px';
         circle.style.left = circlePositionLeft - 35 + 'px';
-        console.log(' : ' + circlePositionTop)
         setTimeout(()=> {
             circle.style.top = circlePositionTop + 15 + 'px';
             circle.style.left = circlePositionLeft - 35 + 'px';
