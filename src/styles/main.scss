@@ -24,18 +24,18 @@
 }
 @keyframes div3 {
   0%, 100% {
-    transform: rotate(145deg);
+    transform: rotate(1145deg);
   }
   50% {
-    transform: rotate(-145deg);
+    transform: rotate(-1145deg);
   }
 }
 @keyframes div4 {
   0%, 100% {
-    transform: rotate(-145deg);
+    transform: rotate(-1145deg);
   }
   50% {
-    transform: rotate(145deg);
+    transform: rotate(1145deg);
   }
 }
 
@@ -296,55 +296,6 @@ header {
         left: 30px;
         font-family: Roboto, sans-serif;
       }
-      .frame {
-        position: absolute;
-        left: 80px;
-        top: calc(50vh - 150px);
-        height: 300px;
-        width: 225px;
-        overflow: hidden;
-        transition: .5s;
-        animation: div1 9s linear infinite reverse;
-
-        > div {
-          height: 300px;
-          width: 225px;
-          overflow: hidden;
-          transition: .5s;
-          animation: div2 9s linear infinite reverse;
-
-          > div {
-            height: 300px;
-            width: 225px;
-            overflow: hidden;
-            transition: .5s;
-            animation: div3 19s linear 1s infinite reverse;
-            
-            > div {
-              height: 300px;
-              width: 225px;
-              transition: .5s;
-              animation: div4 19s linear 1s infinite reverse;
-
-              img {
-                position: fixed;
-                transform: rotate(50deg);
-                height: 300px;
-                width: auto;
-                z-index: 999;
-                transition: .5s;
-              }
-            }
-          }
-        }
-      }
-      // .frame:hover img {
-      //   // transform: ;
-      // }
-      .frame:hover img {
-        transform: scale(1.25)rotate(50deg);
-        transition: 1s;
-      }
     }
 
     .banner {
@@ -428,10 +379,68 @@ main {
     .about-me {
       transform-origin: 50% 0%;
 
-
-      p {
-        padding-left: 2vw;
+      .about-me__cont {
+        display: block;
+        position: relative;
         height: 60vh;
+        overflow-x: auto;
+         
+        .frame {
+          position: relative;
+          margin-left: auto;
+          margin-right: auto;
+          height: 300px;
+          width: 225px;
+          overflow: hidden;
+          transition: .5s;
+          animation: div1 9s linear infinite reverse;
+          border-radius: 35%;
+  
+          > div {
+            height: 300px;
+            width: 225px;
+            overflow: hidden;
+            transition: .5s;
+            animation: div2 9s linear infinite reverse;
+            border-radius: 35%;
+  
+            > div {
+              height: 300px;
+              width: 225px;
+              overflow: hidden;
+              transition: .5s;
+              animation: div3 115s linear 1s infinite reverse;
+              border-radius: 35%;
+              
+              > div {
+                height: 300px;
+                width: 225px;
+                transition: .5s;
+                animation: div4 115s linear 1s infinite reverse;
+                border-radius: 35%;
+  
+                img {
+                  position: fixed;
+                  transform: rotate(50deg);
+                  height: 300px;
+                  width: auto;
+                  z-index: 999;
+                  transition: .5s;
+                }
+              }
+            }
+          }
+        }
+        .frame:hover img {
+          transform: scale(1.25)rotate(50deg);
+          transition: 1s;
+        }
+        p {
+          padding-left: 2vw;
+        }
+      }
+      .about-me__cont:hover {
+        box-shadow: inset -3px 0px 5px #932E96;
       }
     }
     .skills {
@@ -520,32 +529,35 @@ main {
         }
       }  
     }
-    .experience{
+    .experience {
       transform: rotateX(-180deg);
       transform-origin: 0% 100%;
 
-      p {
-        font-size: 17px;
-        padding-left: 2vw;
-        padding-right: 2vw;
-        padding-top: 20px;
-        padding-bottom: 20px;
-        height: calc(60vh -40px);
+      .experience__cont {
+        height: 60vh;
         overflow-Y: scroll;
-        transition: .2s;
-
-        a {
-          text-decoration: none;
-          color: #222;
-        }
-        a:hover {
-          color: #932E96;
-        }
-        a:visited {
-          color: #aaa; 
+        
+        p {
+          font-size: 17px;
+          padding-left: 2vw;
+          padding-right: 2vw;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          transition: .2s;
+  
+          a {
+            text-decoration: none;
+            color: #222;
+          }
+          a:hover {
+            color: #932E96;
+          }
+          a:visited {
+            color: #aaa; 
+          }
         }
       }
-      p:hover {
+      .experience__cont:hover {
         box-shadow: inset -3px 0px 5px #932E96;
       }
     }
@@ -757,7 +769,7 @@ footer {
       a {
         display: flex;
         position: relative;
-        height: 100%;
+        height: 158px;
         width: 100%;
         max-width: 250px;
         background: #000;
@@ -799,7 +811,7 @@ footer {
       }
 
       .page1__game {
-        height: 300px;
+        height: 354px;
         max-width: 600px;
       }
     }

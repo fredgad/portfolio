@@ -9,9 +9,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     page = 0,
     mouseCheck = false, //Mouse events trigger
     wheelCheckTop = true,
-    secondWheelCheckTop = false,
     wheelCheckBot = true,
-    secondWheelCheckBot = false,
     swipingCheck = true,
     navCheck = false,
     pages = document.getElementById('pages').children,
@@ -22,7 +20,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     lines = document.querySelectorAll('.line'),
     page1A = document.querySelectorAll('.page1 a'),
     page2A = document.querySelectorAll('.page2 a'),
+    aboutMeCont = document.querySelector('.about-me__cont'),
     skillsCont = document.querySelector('.skills__cont'),
+    experienceCont = document.querySelector('.experience__cont'),
     skills = document.querySelector('.about__menu_skills'),
     experience = document.querySelector('.about__menu_experience'),
     contacts = document.querySelector('.about__menu_contacts'),
@@ -58,21 +58,20 @@ window.addEventListener("wheel", (e)=> {
     } 
     wheelChacking(e)
 });
-skillsCont.addEventListener('mouseover', (e)=> {
-    swipingCheck = false;
-});
-skillsCont.addEventListener('mouseleave', (e)=> {
-    swipingCheck = true;
-});
-skillsCont.addEventListener('mouseout', (e)=> {
-    swipingCheck = true;
-});
 navButton.addEventListener('click', () => { 
     buttonEvent(300);
 });
 navButton.addEventListener('touchstart', () => { 
     buttonEvent(300);
 });
+
+(function antiWheel(...args) {
+    args.map(elem => {
+        elem.addEventListener('mouseover', ()=> swipingCheck = false)
+        elem.addEventListener('mouseleave', ()=> swipingCheck = true)
+        elem.addEventListener('mouseleave', ()=> swipingCheck = true)
+    })
+})(aboutMeCont, skillsCont, experienceCont);
 
 
 function buttonEvent(speed) {
