@@ -2,8 +2,7 @@ import "./import/modules";
 
 document.addEventListener('DOMContentLoaded', ()=> {
     
-    let  
-    wrapper = document.getElementById('wrapper'),
+    let  wrapper = document.getElementById('wrapper'),
     positions = ['0', '-100vw', '-100vw, -100vh', '-200vw, -100vh'],
     width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
     page = 0,
@@ -82,6 +81,7 @@ function buttonEvent(speed) {
         navWall.classList.add('navWall');
         nav.classList.add('navOpen');
         nav.classList.add('navOpenWidth');
+        
         new Promise((r)=> {
             setTimeout(()=> {
                 if(navCheck) {
