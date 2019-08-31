@@ -219,7 +219,7 @@ html {
   height: 30px;
   width: 40px;
   left: 0;
-  top: 28vh;
+  top: calc(50vh - 155px);
   background: #222; 
   z-index: 999;
   transition: .34s;
@@ -455,17 +455,29 @@ main {
       width: 45vw;
       z-index: 9;
 
-    .about__menu {
+      
+    h2 {
       position: relative;
+      display: flex;
+      align-items: center;
       left: 40%;
       width: 60%;
       min-width: 200px;
-      height: 100%;
+      height: 20%;
+      color: #fff;
+    }
+    .about__menu {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      // align-items: center;
+      justify-content: center;
+      left: 40%;
+      width: 60%;
+      min-width: 200px;
+      height: 60%;
       color: #fff;
         
-      h2 {
-        padding: 8vh 0 16vh 0 ;
-      }
       > div {
         cursor: pointer;
         padding: 2vh 0 2vh 0 ;
@@ -491,6 +503,8 @@ main {
     width: 55vw;  
     perspective: 4000px;
     transform-origin: preserve-3d;
+    overflow: hidden;
+    z-index: 9;
 
     > div {
       position: absolute;
@@ -657,9 +671,12 @@ main {
         align-items: center;
 
         p {
-          width: 120px;
+          width: 140px;
+          min-width: 140px;
           position: relative;
           left: 2vw;
+          background: #fff;
+          z-index: 1;
         }
         span {
           position: relative;
@@ -858,7 +875,7 @@ footer {
       justify-content: center;
       align-items: center;
       align-content: center;
-      height: 100px;
+      height: 20vh;
       width: 100vw;
       font-size: 35px;
       text-align: center;
@@ -1164,5 +1181,22 @@ footer {
   html {
     font-size: 6px;
   }
+  #nav.navOpenWidth {
+    width: 0px; 
+    #navButton {
+      transform: translate(30px);
+    }
+  }
+  #nav .navbarOpen {
+    left: 44px
+  }
+  main #pages .skills > div > div p {
+    width: 105px;
+    min-width: 105px;
+  }
+  main .about .about__menu .element:hover + span {
+    width: 40px;
+  }
+
 }
 

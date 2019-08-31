@@ -57,13 +57,12 @@ window.addEventListener("wheel", (e)=> {
     } 
     wheelChacking(e)
 });
-navButton.addEventListener('click', () => { buttonEvent(300) });
-navButton.addEventListener('touchstart', () => { buttonEvent(300) });
-navButton.addEventListener('touchend', (e) => { 
-    if(e.preventDefault) {
-        e.preventDefault()
-    }
- });
+navButton.addEventListener('click', () => { 
+    buttonEvent(300);
+});
+navButton.addEventListener('touchstart', () => { 
+    buttonEvent(300);
+});
 
 (function antiWheel(...args) {
     args.map(elem => {
