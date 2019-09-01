@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     swipingCheck = true,
     navCheck = false,
     theName = document.querySelectorAll('#theName p'),
+    theWorks = document.querySelectorAll('#works p'),
     pages = document.getElementById('pages').children,
     footerHead = document.querySelector('#works > h2'),
     comingSoon = document.querySelector("#comingSoon"),
@@ -178,7 +179,6 @@ function buttonEvent(speed) {
 function wheelChacking(e) {
     if(swipingCheck) {
         if (e.deltaY < 0) {
-            nameAppearance(1);
             if(wheelCheckTop) {
                 scrollingPage(true); //Scrolling up
                 wheelCheckTop = false;
@@ -189,7 +189,6 @@ function wheelChacking(e) {
             }
         }
         if (e.deltaY > 0) {
-            nameAppearance(0);
             if(wheelCheckBot) {
                 scrollingPage(); //Scrolling down
                 wheelCheckBot = false;
@@ -212,6 +211,17 @@ function scrollingPage(direction) {
             page++;
         } 
     }
+    if(page === 0) {
+        nameAppearance(1);
+    } else {
+        nameAppearance(0);
+    }
+
+    if(page >= 2) {
+        worksAppearance(1);
+    } else {
+        worksAppearance(0);
+    }
     
     wrapper.style.transform = `translate(${positions[page]})`;
     circleChangeSize();
@@ -219,18 +229,39 @@ function scrollingPage(direction) {
 };
 
 function nameAppearance(bool) {
-    setTimeout(()=> {
-        if(bool) {
+    if(bool) {
+        setTimeout(()=> {
             Array.from(theName).map((el, i) => { 
                 setTimeout(()=> {
                     el.classList.add('away')
                     el.classList.add('tran')
                 }, i * 60)
             })
-        } else {
-            Array.from(theName).map(el => el.classList.remove('away'))
-        }
-    }, 340);
+        }, 340);
+    } else {
+        Array.from(theName).map(el => el.classList.remove('away'))
+    }
+};
+
+function worksAppearance(bool) {
+    if(bool) {
+        setTimeout(()=> {
+            Array.from(theWorks).map((el, i) => { 
+                setTimeout(()=> {
+                        el.classList.add('trip')
+                }, i * 100)
+            })
+        }, 340);
+    } else {
+        Array.from(theWorks).map(el => el.classList.remove('trip'))
+        setTimeout(()=> {
+            Array.from(theWorks).map((el, i) => {
+                setTimeout(()=> {
+                    el.classList.remove('trip')
+                }, i * 100)
+            })
+        }, 340);
+    }
 };
 
 function rotatePages(e) {
@@ -376,6 +407,47 @@ for(let y = 0; y < box.length; y++) {
 }
 
 
+
+
+
+
+
+
+//Cookie 
+function setCookie(name, value, options = {}) {
+
+  options = {
+    path: '/',
+    ...options
+  };
+  
+  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+  
+  for (let optionKey in options) {
+    updatedCookie += "; " + optionKey;
+    let optionValue = options[optionKey];
+    if (optionValue !== true) {
+      updatedCookie += "=" + optionValue;
+    }
+  }
+
+  document.cookie = updatedCookie;
+}
+
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+      "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+  }
+  
+  setCookie('lang', 'RUS', {'max-age': 3600});
+
+  document.getElementById('swap').addEventListener('click', () => {
+      alert(getCookie('lang'));
+      setCookie('lang', 'ENG', {'max-age': 3600});
+  })
+  
 
 
 });
