@@ -6,6 +6,49 @@
 @import "base/general";
 @import "../blocks/modules";
 
+@keyframes  nameWaves {
+  0%, 80%, 100% {
+    color: #222;
+  }
+  90% {
+    color: #fff;
+  }
+}
+@keyframes  webWaves {
+  0% {
+    top: 17px;
+  }
+  2% {
+    top: -15px;
+  }
+  4% {
+    top: 13px;
+  }
+  6% {
+    top: -11px;
+  }
+  12% {
+    top: 0;
+    left: 9px;
+  }
+  10% {
+    left: -7px;
+  }
+  12% {
+    left: 5px;
+  }
+  14% {
+    top: 3px;
+    left: 0;
+  }
+  16% {
+    top: -1px;
+  }
+  18% {
+    top: 0;
+  }
+}
+
 @keyframes div1 {
   0%, 100% {
     transform: rotate(0);
@@ -422,12 +465,85 @@ header {
     > div {
 
       h1 {
-        font-size: 45px;
+        padding-left: 40px;
         position: absolute;
+        display: flex;
+        align-items: center;
+        font-size: 45px;
         color: #222;
-        top: 30px;
-        left: 30px;
+        width: 100vw;
+        height: 20vh;
+        top: 0px;
+        left: 0px;
         font-family: Roboto, sans-serif;
+
+        p {
+          position: relative;
+          transition: 0s;
+          transform: rotate(100deg)
+        }
+        p:nth-child(1) {
+          transform-origin: 100% 1000%;
+        }
+        p:nth-child(2) {
+          transform-origin: 1000% 100%;
+        }
+        p:nth-child(3) {
+          transform-origin: 0% -1000%;
+        }
+        p:nth-child(4) {
+          transform-origin: -700% 0%;
+        }
+        p:nth-child(5) {
+          transform-origin: -1000% -200%;
+        }
+        p:nth-child(6) {
+          transform-origin: 100% 1000%;
+        }
+        p:nth-child(7) {
+          transform-origin: 1000% 100%;
+        }
+        p:nth-child(8) {
+          transform-origin: 0% -300%;
+          transform: translate(100vw)rotate(-100deg);
+        }
+        p:nth-child(9) {
+          transform-origin: 700% 0%;
+        }
+        p:nth-child(10) {
+          transform-origin: -900% -200%;
+        }
+        p:nth-child(11) {
+          transform-origin: 100% 1000%;
+        }
+        p:nth-child(12) {
+          transform-origin: 1000% 100%;
+        }
+        p:nth-child(13) {
+          transform-origin: 0% -1000%;
+        }
+
+        .tran {
+          transition: .6s;
+        }
+        p.away {
+          transition: 1s;
+          transform: translate(0vw)rotate(0);
+          animation: nameWaves 3s linear -.6s;
+        }
+      }
+      h3 {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+        color: #222;
+        width: 100vw;
+        height: 20vh;
+        top: 60px;
+        left: 0;
       }
     }
 
@@ -995,12 +1111,14 @@ footer {
           justify-content: center;
           align-items: center;
           z-index: 9;
+          text-align: center;
         }
         img {
+          min-width: 200px;
           display: block;
           width: 100%;
           height: auto;
-          margin-top: 40px;
+          margin-top: 35px;
           transition: .2s;
         }
         img:hover {
@@ -1014,6 +1132,16 @@ footer {
       .page1__game {
         height: 354px;
         max-width: 600px;
+
+        img {
+          position: relative;
+          background-position: 0% 0%;
+          margin: 0 0 0 50%;
+          left: -275px;
+          min-width: 550px;
+          width: auto;
+          height: 100%;
+        }
       }
     }
     .page2 {
@@ -1065,7 +1193,7 @@ footer {
         height: 150px;
         width: 100%;
         max-width: 250px;
-        background: #eee;
+        background: #fff;
         border-bottom: 4px solid #932E96;
         border-top: 4px solid #932E96;
         padding: 0;
@@ -1089,10 +1217,12 @@ footer {
           justify-content: center;
           align-items: center;
           z-index: 9;
+          text-align: center;
         }
         img {
           display: block;
           width: 100%;
+          min-width: 200px;
           height: auto;
           margin-top: 35px;
           transition: .2s;
@@ -1117,8 +1247,8 @@ footer {
             width: 70px;
             margin-top: 45px;
             left: calc(50% - 35px);
-            background: radial-gradient(#932E96, rgba(0,0,0,.2), transparent, transparent 60%, #932E96 70%, #932E96);
-            border: 3px solid #fff;
+            background: radial-gradient(#932E96, rgba(34,34,34,.2), transparent, transparent 60%, #932E96 70%, #932E96);
+            border: 3px solid #222;
             border-radius: 50%; 
             top: 10px;
           }
@@ -1175,6 +1305,10 @@ footer {
 @media screen and (max-width:768px) {
   html {
     font-size: 7px;
+  }
+  header > div h1 {
+    justify-content: center;
+    font-size: 37px;
   }
 }
 @media screen and (max-width:499px) {

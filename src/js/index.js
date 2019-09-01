@@ -1,7 +1,9 @@
 import "./import/modules";
 
 document.addEventListener('DOMContentLoaded', ()=> {
-    
+
+    nameAppearance(1);
+
     let  wrapper = document.getElementById('wrapper'),
     positions = ['0', '-100vw', '-100vw, -100vh', '-200vw, -100vh'],
     width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
@@ -11,6 +13,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     wheelCheckBot = true,
     swipingCheck = true,
     navCheck = false,
+    theName = document.querySelectorAll('#theName p'),
     pages = document.getElementById('pages').children,
     footerHead = document.querySelector('#works > h2'),
     comingSoon = document.querySelector("#comingSoon"),
@@ -88,7 +91,9 @@ document.addEventListener('touchstart', (e)=> {
     swipeHeight = 0;
 });
 document.addEventListener('touchmove', (e)=> {
-    
+    if(navCheck) {
+        buttonEvent(300);
+    } 
 });
 document.addEventListener('touchend', (e)=> {
     if(swipingCheck) {
@@ -173,6 +178,7 @@ function buttonEvent(speed) {
 function wheelChacking(e) {
     if(swipingCheck) {
         if (e.deltaY < 0) {
+            nameAppearance(1);
             if(wheelCheckTop) {
                 scrollingPage(true); //Scrolling up
                 wheelCheckTop = false;
@@ -183,6 +189,7 @@ function wheelChacking(e) {
             }
         }
         if (e.deltaY > 0) {
+            nameAppearance(0);
             if(wheelCheckBot) {
                 scrollingPage(); //Scrolling down
                 wheelCheckBot = false;
@@ -209,34 +216,53 @@ function scrollingPage(direction) {
     wrapper.style.transform = `translate(${positions[page]})`;
     circleChangeSize();
     changePosition();
-} 
+};
+
+function nameAppearance(bool) {
+    setTimeout(()=> {
+        if(bool) {
+            Array.from(theName).map((el, i) => { 
+                setTimeout(()=> {
+                    el.classList.add('away')
+                    el.classList.add('tran')
+                }, i * 60)
+            })
+        } else {
+            Array.from(theName).map(el => el.classList.remove('away'))
+        }
+    }, 340);
+};
 
 function rotatePages(e) {
     let rotate = e.target.getAttribute('data-num');
     
-    if(rotate == 0) {
+    switch (rotate) {
+    case '0':
         pages[0].style.transform = 'rotateX(0deg)';
         pages[1].style.transform = 'rotateY(180deg)';
         pages[2].style.transform = 'rotateX(-180deg)';
         pages[3].style.transform = 'rotateY(-180deg)';
-    } else if(rotate == 1) {
+        break;
+    case '1': 
         pages[0].style.transform = 'rotateX(-180deg)';
         pages[1].style.transform = 'rotateY(360deg)';
         pages[2].style.transform = 'rotateX(-180deg)';
         pages[3].style.transform = 'rotateY(-180deg)';
-
-        
-    } else if(rotate == 2) {
+        break;
+    case '2': 
         pages[0].style.transform = 'rotateX(-180deg)';
         pages[1].style.transform = 'rotateY(520deg)';
         pages[2].style.transform = 'rotateX(-360deg)';
         pages[3].style.transform = 'rotateY(-180deg)';
-    } else if(rotate == 3) {
+        break;
+    case '3': 
         pages[0].style.transform = 'rotateX(-180deg)';
         pages[1].style.transform = 'rotateY(520deg)';
         pages[2].style.transform = 'rotateX(-520deg)';
         pages[3].style.transform = 'rotateY(-360deg)';
+        break;
     }
+    
     if(rotate == 1) {
         for(let x = 0; x < lines.length; x++) {
             lines[x].classList.remove('linePlus');
@@ -246,23 +272,22 @@ function rotatePages(e) {
             lines[x].classList.add('linePlus');
         }
     }
-
-}
+};
 
 function changePosition() {
     if(page === 0) {
-        circle.style.top = '50vh';
-        circle.style.left = '50vw';
+        circle.style.top = 'calc(50vh - 30px)';
+        circle.style.left = 'calc(50vw - 30px)';
         
         setTimeout(()=> {
-            circle.style.top = '50vh';
-            circle.style.left = '50vw';
+            circle.style.top = 'calc(50vh - 30px)';
+            circle.style.left = 'calc(50vw - 30px)';
         },50);
     } else if(page === 1) {
-        circle.style.top = circlePositionTop + 15 + 'px';
+        circle.style.top = circlePositionTop  + aboutMe.offsetHeight/2 - 7 + 'px';
         circle.style.left = circlePositionLeft - 35 + 'px';
         setTimeout(()=> {
-            circle.style.top = circlePositionTop + 15 + 'px';
+            circle.style.top = circlePositionTop + aboutMe.offsetHeight/2 - 7 + 'px';
             circle.style.left = circlePositionLeft - 35 + 'px';
         },50);
 
