@@ -456,28 +456,33 @@ html {
 }
 
 #swapWrapper {
-  position: absolute;
+  position: fixed;
   display: flex;
   align-items: center;
-  top: 0;
-  right: 0;
+  top: 80vh;
+  left: 0;
   height: 20vh;
   width: 30px;
   z-index: 99999;
 
   #swap {
-    top: 0;
     right: 0;
     height: 20px;
     width: 30px;
-    background: #222;
+    background: #000;
     color: #fff;
+    font-size: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     font-family: Roboto, sans-serif;
+    transition:.3s;
+    transform-origin: 0% 50%;
     cursor: pointer;
+  }
+  #swap:hover {
+    transform: scale(2)
   }
 }
 
@@ -507,28 +512,28 @@ header {
         p {
           position: relative;
           transition: 0s;
-          transform: rotate(100deg)
+          transform: rotate(120deg);
         }
         p:nth-child(1) {
-          transform-origin: 100% 1400%;
+          transform-origin: 100% 2400%;
         }
         p:nth-child(2) {
-          transform-origin: 1000% 100%;
+          transform-origin: 2000% 100%;
         }
         p:nth-child(3) {
-          transform-origin: 0% -1000%;
+          transform-origin: 0% -2000%;
         }
         p:nth-child(4) {
-          transform-origin: -700% 0%;
+          transform-origin: -1000% 0%;
         }
         p:nth-child(5) {
-          transform-origin: -1000% -200%;
+          transform-origin: -2000% -200%;
         }
         p:nth-child(6) {
-          transform-origin: 100% 1400%;
+          transform-origin: 100% 2400%;
         }
         p:nth-child(7) {
-          transform-origin: 1000% 100%;
+          transform-origin: 2000% 100%;
         }
         p:nth-child(8) {
           transform-origin: 0% -300%;
@@ -671,13 +676,16 @@ main {
       transform-origin: 50% 0%;
 
       .about-me__cont {
-        display: block;
+        display: grid;
+        align-content: center;
         position: relative;
         height: 60vh;
         overflow-y: scroll;
+        overflow-x: hidden;
          
         .frame {
-          margin-top: 20px;
+          margin-top: 120px;
+          top: -30px;
           transform-origin: 50% 50%;
           position: relative;
           margin-left: auto;
@@ -742,15 +750,40 @@ main {
     }
     .skills {
       transform: rotateY(180deg);
+
       
       .skills__cont {
+        position: relative;
         height: 60vh;
-        overflow-x: auto;
+        overflow-x: hidden;
+        overflow-y: scroll;
         transition: .2s;
+        display: grid;
+        align-items: center;
+        
+        > div {
+          display: flex;
+          flex-direction: column;
+          position: relative;
+          width: auto;
+          left: 0;
+          width: 60vw;
+
+          > div {
+            display: flex;
+            width: 55vw;
+            position: relative;
+
+            > span {
+              display: block;
+              top: 22.5px;
+            }
+          }
+        }
 
         .skills__cont_html span {
           width: 50%;   
-          transition: 4s;       
+          transition: 4s;    
         }
         .skills__cont_css span {
           width: 50%;
@@ -836,25 +869,32 @@ main {
       .experience__cont {
         height: 60vh;
         overflow-Y: scroll;
+        display: grid;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         
         p {
           font-size: 17px;
           padding-left: 2vw;
           padding-right: 2vw;
-          padding-top: 20px;
-          padding-bottom: 20px;
           transition: .2s;
+          margin: 0;
   
-          a {
-            text-decoration: none;
-            color: #222;
-          }
-          a:hover {
-            color: #932E96;
-          }
-          a:visited {
-            color: #aaa; 
-          }
+        }
+        a {
+          text-decoration: none;
+          color: #222;
+          margin-top: -16px;
+          padding: 0;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        a:hover {
+          color: #932E96;
+        }
+        a:visited {
+          color: #aaa; 
         }
       }
       .experience__cont:hover {
@@ -1136,7 +1176,7 @@ footer {
           position: absolute;
           background: #222;
           color: #fff;
-          font-size: 17px;
+          font-size: 16px;
           font-weight: 600;
           width: 100%;
           height: 35px;
@@ -1242,7 +1282,7 @@ footer {
           position: absolute;
           background: #222;
           color: #fff;
-          font-size: 17px;
+          font-size: 16px;
           font-weight: 600;
           width: 100%;
           height: 35px;
@@ -1342,6 +1382,7 @@ footer {
   header > div h1 {
     justify-content: center;
     font-size: 37px;
+    padding-left: 0;
   }
 }
 @media screen and (max-width:499px) {

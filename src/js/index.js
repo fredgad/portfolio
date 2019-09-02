@@ -2,6 +2,7 @@ import "./import/modules";
 
 document.addEventListener('DOMContentLoaded', ()=> {
 
+    setCookie('lang', 'ENG', {'max-age': 3600});
     nameAppearance(1);
 
     let  wrapper = document.getElementById('wrapper'),
@@ -16,6 +17,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
     theName = document.querySelectorAll('#theName p'),
     theWorks = document.querySelectorAll('#works p'),
     pages = document.getElementById('pages').children,
+    LElements = document.querySelectorAll('.L'),
     footerHead = document.querySelector('#works > h2'),
     comingSoon = document.querySelector("#comingSoon"),
     circle = document.querySelector('.field'),
@@ -415,12 +417,10 @@ for(let y = 0; y < box.length; y++) {
 
 //Cookie 
 function setCookie(name, value, options = {}) {
-
   options = {
     path: '/',
     ...options
   };
-  
   let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
   
   for (let optionKey in options) {
@@ -430,7 +430,6 @@ function setCookie(name, value, options = {}) {
       updatedCookie += "=" + optionValue;
     }
   }
-
   document.cookie = updatedCookie;
 }
 
@@ -439,14 +438,27 @@ function getCookie(name) {
       "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
     ));
     return matches ? decodeURIComponent(matches[1]) : undefined;
-  }
+}
   
-  setCookie('lang', 'RUS', {'max-age': 3600});
+document.getElementById('swap').addEventListener('click', () => {
+    if(getCookie('lang') === 'ENG') {
+        setCookie('lang', 'РУС', {'max-age': 3600})
+        changeLanguage(1)
+    }else {
+        setCookie('lang', 'ENG', {'max-age': 3600})
+        changeLanguage(0)
+    }
+});
 
-  document.getElementById('swap').addEventListener('click', () => {
-      alert(getCookie('lang'));
-      setCookie('lang', 'ENG', {'max-age': 3600});
-  })
+function changeLanguage(bool) {
+    Array.from(LElements).map(el => {
+        if(bool) {
+            el.innerText =  el.getAttribute('data-r')
+        } else {
+            el.innerText =  el.getAttribute('data-e')
+        }
+    })
+}
   
 
 
