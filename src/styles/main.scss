@@ -319,6 +319,7 @@ html {
       transition: width .15s;
       transform-origin: 0% 50%;
       overflow: hidden;
+      transition: border .25s;
 
       a {
         color: #eee;
@@ -335,6 +336,11 @@ html {
       a:hover {
         color: #932E96;
       }
+    }
+    .navbar__line:hover {
+      transform: scale(5);
+      transition: border .25s;
+      border-right: 40px solid #932E96;
     }
     .navbar__line:nth-child(1) {
       left: 55px;
@@ -730,7 +736,7 @@ main {
                   width: auto;
                   transition: .5s;
                   overflow: hidden;
-                  transform: rotate(-45deg);
+                  transform: scale(1.15)rotate(-45deg);
                 }
               }
             }
@@ -1020,10 +1026,19 @@ main {
     }
     .side1 {
         transform:translateZ(-15.4rem)translateX(-10rem)translateY(-11rem)rotateY(-90deg);
+
+        img {
+          height: 26rem;
+          width: auto;
+        }
     }
     .side2 {
         transform:translateZ(-15.4rem)translateX(10rem)translateY(-11rem)rotateY(90deg);
-
+        
+        img {
+          height: 16rem;
+          width: auto;
+        }
     }
     .side1, .side2 {
       background: radial-gradient(rgba(255, 255, 255, 0.274), transparent, transparent);
@@ -1032,10 +1047,6 @@ main {
       width: 33rem;
       border-radius: 50%;
       
-      img {
-        height: 16rem;
-        width: auto;
-      }
     }
   }
 }

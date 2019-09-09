@@ -2,6 +2,7 @@ import "./import/modules";
 
 document.addEventListener('DOMContentLoaded', ()=> {
 
+
     setCookie('lang', 'ENG', {'max-age': 3600});
     nameAppearance(1);
 
