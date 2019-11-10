@@ -963,7 +963,7 @@ main {
     animation: rotateSide 12s linear infinite;
     perspective: 9e9999px;
 
-    div {
+    > div {
       position:absolute;
       height:10rem;
       width:20rem;
@@ -973,16 +973,27 @@ main {
       justify-content:center;
       align-items:center;
       font-size: 5rem;
-    //   backface-visibility: hidden;
       background: rgba(255, 255, 255, 0.164);
       transform-style:preserve-3d;
-
-      img {
-        height: 8rem;
-        width: auto;
-        backface-visibility: hidden;
-      }
       
+      // img {
+      //   height: 8rem;
+      //   width: auto;
+      //   backface-visibility: hidden;
+      // }
+      div {
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        position:absolute;
+        height: 10rem;
+        width: 20rem; 
+        background-size: contain;
+        backface-visibility: hidden;
+        background-repeat: no-repeat; 
+        overflow: visible;
+        background-position: 50% 50%;
+      }
     }
 
     .one {
@@ -1027,17 +1038,24 @@ main {
     .side1 {
         transform:translateZ(-15.4rem)translateX(-10rem)translateY(-11rem)rotateY(-90deg);
 
-        img {
-          height: 26rem;
-          width: auto;
+        // img {
+        //   height: 26rem;
+        //   width: auto;
+        // }
+        div {
+          width: 33rem;
+          height: 33rem;
         }
     }
     .side2 {
         transform:translateZ(-15.4rem)translateX(10rem)translateY(-11rem)rotateY(90deg);
         
-        img {
-          height: 16rem;
-          width: auto;
+        // img {
+        //   height: 16rem;
+        //   width: auto;
+        // }
+        div { 
+          height: 19rem;
         }
     }
     .side1, .side2 {
