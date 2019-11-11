@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', ()=> {
 
 
     setCookie('lang', 'ENG', {'max-age': 3600});
-    nameAppearance(1);
 
     let  wrapper = document.getElementById('wrapper'),
     positions = ['0', '-100vw', '-100vw, -100vh', '-200vw, -100vh'],
@@ -85,6 +84,19 @@ navButton.addEventListener('touchend', (e) => {
         })
     })
 })(aboutMeCont, skillsCont, experienceCont);
+
+
+// Lazy load for images
+let lazy = document.querySelectorAll('.lazy');
+
+Array.from(lazy).map((el) => {
+    el.style.backgroundImage = `url(${el.getAttribute('data-src')})`;
+    el.removeAttribute('data-src');
+});
+
+setTimeout(() => {
+    nameAppearance(1);
+},999);
 
 //Mouse slider
 document.addEventListener('touchstart', (e)=> {
@@ -238,7 +250,7 @@ function nameAppearance(bool) {
                 setTimeout(()=> {
                     el.classList.add('away')
                     el.classList.add('tran')
-                }, i * 60)
+                }, i * 60) 
             })
         }, 340);
     } else {

@@ -253,8 +253,14 @@ html {
   justify-content: center;
   align-items: center;
 
-  img {
+  .lazy {
     display: block;
+    opacity: 1;
+    transition: opacity 3s;
+  }
+   
+  [data-src] {
+    opacity: 0;
   }
 }
 
@@ -316,10 +322,10 @@ html {
       justify-content: center;
       align-items: center;
       right: 100%;
-      transition: width .15s;
       transform-origin: 0% 50%;
       overflow: hidden;
       transition: border .25s;
+      transition: width .15s;
 
       a {
         color: #eee;
@@ -690,8 +696,7 @@ main {
         overflow-x: hidden;
          
         .frame {
-          margin-top: 120px;
-          top: -30px;
+          margin-top: 300px;
           transform-origin: 50% 50%;
           position: relative;
           margin-left: auto;
@@ -737,6 +742,7 @@ main {
                   transition: .5s;
                   overflow: hidden;
                   transform: scale(1.15)rotate(-45deg);
+                  filter: saturate(0);
                 }
               }
             }
@@ -744,10 +750,11 @@ main {
         }
         .frame:hover img {
           transform: scale(1.45)rotate(-45deg);
+          filter: saturate(1);
           transition: 1s;
         }
         p {
-          padding-left: 2vw;
+          padding: 40px 2vw 20px 2vw;
         }
       }
       .about-me__cont:hover {
@@ -1025,6 +1032,10 @@ main {
     }
     .six {
       transform:translateZ(-30.8rem)rotateX(-144deg);
+
+      div {
+        background-size: 85%;
+      }
     }
     .seven {
       transform:translateZ(-24.9rem)translateY(8.1rem)rotateX(-108deg);
@@ -1221,15 +1232,20 @@ footer {
           width: 100%;
           height: auto;
           margin-top: 35px;
-          transition: .2s;
+          transition: .6s;
         }
         img:hover {
-          transform: scale(1.5);
+          transform: scale(1.15);
           transition: .6s;
         }
       }
       a:hover p {
         color: #932E96;
+      }
+      a:hover {
+        transform: scale(1.1);
+        transform-origin: center;
+        box-shadow: 0 0 17px #222;
       }
       .page1__game {
         height: 354px;
